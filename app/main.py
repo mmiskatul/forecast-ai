@@ -1,6 +1,7 @@
 import warnings
 
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 from langchain_core._api.deprecation import LangChainPendingDeprecationWarning
 
 warnings.filterwarnings(
@@ -18,4 +19,11 @@ app = FastAPI(
     version="1.0.0",
 )
 register_exception_handlers(app)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=False,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.include_router(router)
