@@ -9,26 +9,13 @@ warnings.filterwarnings(
     category=LangChainPendingDeprecationWarning,
 )
 
-from app.schemas import ForecastInput, ForecastOutput
-from app.services.forecast_graph import run_forecast_graph
+from app.api.routes import router
+from app.core.exceptions import register_exception_handlers
 
 app = FastAPI(
     title="Forecast AI",
     description="Memory-aware forecasting API for Restock Radar.",
     version="1.0.0",
 )
-
-
-@app.get("/")
-def root() -> dict[str, str]:
-    return {"message": "Forecast AI API is running"}
-
-
-@app.get("/health")
-def health() -> dict[str, str]:
-    return {"status": "ok", "service": "Forecast AI"}
-
-
-@app.post("/forecast", response_model=ForecastOutput)
-async def forecast(payload: ForecastInput) -> ForecastOutput:
-    return await run_forecast_graph(payload)
+register_exception_handlers(app)
+app.include_router(router)

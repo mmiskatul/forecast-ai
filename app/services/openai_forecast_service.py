@@ -2,7 +2,7 @@ import json
 from pathlib import Path
 from typing import Any
 
-from app.config import get_settings
+from app.core.config import get_settings
 from app.schemas import ForecastInput, ForecastOutput
 
 

@@ -73,3 +73,15 @@ def test_forecast_endpoint_accepts_dynamic_payload_shape(monkeypatch):
     assert data["forecasting"]["channel_insights"]["top_channel"] == "amazon"
     assert data["forecasting"]["recommendations"]
     assert data["memory"]["learning_signal"]["historical_avg_error"] == 0.18
+
+
+def test_forecast_validation_error_returns_consistent_shape():
+    client = TestClient(app)
+
+    response = client.post("/forecast", json={"current_data": []})
+
+    assert response.status_code == 422
+    data = response.json()
+    assert data["code"] == "validation_error"
+    assert data["path"] == "/forecast"
+    assert isinstance(data["errors"], list)
