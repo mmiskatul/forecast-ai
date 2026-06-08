@@ -1,0 +1,167 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ForecastAIOutput",
+  "type": "object",
+  "required": ["forecasting", "memory"],
+  "properties": {
+    "forecasting": {
+      "type": "object",
+      "required": [
+        "trend",
+        "demand_level",
+        "risk_level",
+        "confidence_score",
+        "stockout_prediction_days",
+        "forecast_summary",
+        "learning_notes",
+        "channel_insights",
+        "recommendations"
+      ],
+      "properties": {
+        "trend": {
+          "type": "string",
+          "enum": ["increasing", "stable", "declining"]
+        },
+        "demand_level": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "risk_level": {
+          "type": "string",
+          "enum": ["high", "medium", "low"]
+        },
+        "confidence_score": {
+          "type": "number",
+          "minimum": 0,
+          "maximum": 1
+        },
+        "stockout_prediction_days": {
+          "type": "number",
+          "minimum": 0
+        },
+        "forecast_summary": {
+          "type": "string"
+        },
+        "learning_notes": {
+          "type": "string"
+        },
+        "channel_insights": {
+          "type": "object",
+          "required": ["top_channel", "fastest_growing_channel", "underperforming_channel"],
+          "properties": {
+            "top_channel": {
+              "type": "string"
+            },
+            "fastest_growing_channel": {
+              "type": "string"
+            },
+            "underperforming_channel": {
+              "type": "string"
+            }
+          },
+          "additionalProperties": false
+        },
+        "recommendations": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "minItems": 2
+        }
+      },
+      "additionalProperties": false
+    },
+    "memory": {
+      "type": "object",
+      "required": ["forecast_snapshot", "learning_signal", "backend_storage_notes"],
+      "properties": {
+        "forecast_snapshot": {
+          "type": "object",
+          "required": [
+            "trend",
+            "demand_level",
+            "risk_level",
+            "confidence_score",
+            "stockout_prediction_days",
+            "channel_insights"
+          ],
+          "properties": {
+            "trend": {
+              "type": "string",
+              "enum": ["increasing", "stable", "declining"]
+            },
+            "demand_level": {
+              "type": "string",
+              "enum": ["high", "medium", "low"]
+            },
+            "risk_level": {
+              "type": "string",
+              "enum": ["high", "medium", "low"]
+            },
+            "confidence_score": {
+              "type": "number",
+              "minimum": 0,
+              "maximum": 1
+            },
+            "stockout_prediction_days": {
+              "type": "number",
+              "minimum": 0
+            },
+            "channel_insights": {
+              "type": "object",
+              "required": ["top_channel", "fastest_growing_channel", "underperforming_channel"],
+              "properties": {
+                "top_channel": {
+                  "type": "string"
+                },
+                "fastest_growing_channel": {
+                  "type": "string"
+                },
+                "underperforming_channel": {
+                  "type": "string"
+                }
+              },
+              "additionalProperties": false
+            }
+          },
+          "additionalProperties": false
+        },
+        "learning_signal": {
+          "type": "object",
+          "required": [
+            "used_previous_forecasts",
+            "historical_avg_error",
+            "memory_trend",
+            "smoothing_applied",
+            "channel_bias_used"
+          ],
+          "properties": {
+            "used_previous_forecasts": {
+              "type": "number",
+              "minimum": 0
+            },
+            "historical_avg_error": {
+              "type": "number",
+              "minimum": 0
+            },
+            "memory_trend": {
+              "type": "string"
+            },
+            "smoothing_applied": {
+              "type": "boolean"
+            },
+            "channel_bias_used": {
+              "type": "boolean"
+            }
+          },
+          "additionalProperties": false
+        },
+        "backend_storage_notes": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    }
+  },
+  "additionalProperties": false
+}

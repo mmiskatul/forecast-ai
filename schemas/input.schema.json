@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ForecastAIInput",
+  "type": "object",
+  "properties": {
+    "user_id": {
+      "type": "string"
+    },
+    "forecast_type": {
+      "type": "string",
+      "enum": ["daily", "weekly", "monthly"]
+    },
+    "current_data": {
+      "type": "object",
+      "additionalProperties": true
+    },
+    "memory": {
+      "type": "object",
+      "additionalProperties": true
+    }
+  },
+  "additionalProperties": true
+}

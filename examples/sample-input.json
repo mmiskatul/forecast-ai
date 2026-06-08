@@ -1,0 +1,62 @@
+{
+  "user_id": "123",
+  "forecast_type": "weekly",
+  "current_data": {
+    "sales": {
+      "total_units": 420,
+      "previous_total_units": 350,
+      "daily_average_units": 60
+    },
+    "inventory": {
+      "current_stock": 510,
+      "reorder_point": 250,
+      "lead_time_days": 5
+    },
+    "channels": {
+      "amazon": {
+        "sales_units": 210,
+        "previous_sales_units": 200
+      },
+      "tiktok": {
+        "sales_units": 140,
+        "previous_sales_units": 85
+      },
+      "shopify": {
+        "sales_units": 70,
+        "previous_sales_units": 65
+      }
+    }
+  },
+  "memory": {
+    "previous_forecasts": [
+      {
+        "trend": "increasing",
+        "demand_level": "medium",
+        "confidence_score": 0.78,
+        "stockout_prediction_days": 10,
+        "channel_insights": {
+          "fastest_growing_channel": "tiktok"
+        }
+      },
+      {
+        "trend": "increasing",
+        "demand_level": "high",
+        "confidence_score": 0.81,
+        "stockout_prediction_days": 8,
+        "channel_insights": {
+          "fastest_growing_channel": "tiktok"
+        }
+      }
+    ],
+    "forecast_accuracy": {
+      "avg_error": 0.12
+    },
+    "user_trends": {
+      "growth_pattern": "increasing",
+      "channel_bias": {
+        "tiktok": "previously overestimated",
+        "amazon": "stable"
+      }
+    }
+  }
+}

@@ -1,0 +1,11 @@
+services:
+  forecast-ai:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: forecast-ai
+    env_file:
+      - .env
+    ports:
+      - "8010:8010"
+    restart: unless-stopped
